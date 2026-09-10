@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import ima from '../assets/fam.png';
 import { Shield, Users, Building2, ChevronRight, CheckCircle, BookOpen, Phone, MessageCircle, ArrowRight, Heart, Star, Briefcase, TrendingUp, Award } from 'lucide-react';
 
 const solutions = [
@@ -41,7 +42,8 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center overflow-hidden" style={{ paddingTop: '6rem' }}>
         <div className="absolute inset-0 z-0">
           <img
-            src="https://media.base44.com/images/public/6a9313c19e128f8d88dc6e99/e0f185bda_generated_27f161f8.png"
+            // src="https://media.base44.com/images/public/6a9313c19e128f8d88dc6e99/e0f185bda_generated_27f161f8.png"
+            src={ima}
             alt="South African family protected by Reubray"
             className="w-full h-full object-cover"
           />

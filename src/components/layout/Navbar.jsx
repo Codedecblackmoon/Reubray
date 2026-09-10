@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
+import logo from '../../assets/PHOTO.png';
 
 const navItems = [
   { label: 'Home', path: '/' },
@@ -52,7 +53,8 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 flex-shrink-0">
             <img
-              src="https://github.com/user-attachments/assets/0d001b99-2db8-4701-a015-2236ca5478fb"
+              // src="https://media.base44.com/images/public/user_6a9312978100dad802d1cc99/e944978a6_ReubrayLOGOPHOTO.jpg"
+              src={logo}
               alt="Reubray"
               className="h-10 w-10 rounded-lg object-cover"
             />
