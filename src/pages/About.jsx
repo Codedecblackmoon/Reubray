@@ -81,7 +81,7 @@ export default function About() {
       </section>
 
       {/* GOVERNANCE */}
-      <section className="py-24 px-6" style={{ background: 'white' }}>
+      {/* <section className="py-24 px-6" style={{ background: 'white' }}>
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-14">
             <div className="gold-rule mx-auto" />
@@ -102,10 +102,10 @@ export default function About() {
             Leadership and governance information will be published once confirmed and approved by Reubray.
           </p>
         </div>
-      </section>
+      </section> */}
 
       {/* LEADERSHIP placeholder */}
-      <section className="py-24 px-6" style={{ background: 'var(--rb-parchment)' }}>
+      {/* <section className="py-24 px-6" style={{ background: 'var(--rb-parchment)' }}>
         <div className="max-w-4xl mx-auto text-center">
           <div className="gold-rule mx-auto" />
           <h2 className="serif-display text-4xl font-light mb-6">Leadership</h2>
@@ -124,7 +124,7 @@ export default function About() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA */}
       <section className="py-20 px-6 text-center" style={{ background: 'var(--rb-navy)' }}>

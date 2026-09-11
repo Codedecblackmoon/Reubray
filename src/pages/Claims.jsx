@@ -34,10 +34,10 @@ export default function Claims() {
             To begin the claims process, please contact Reubray directly. Our team will guide you through the required steps and connect you with the relevant insurer or product provider.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a href="tel:[TELEPHONE]" className="btn-primary flex items-center gap-2">
+            <a href="tel:+27609953719" className="btn-primary flex items-center gap-2">
               <Phone size={14} /> Call Us
             </a>
-            <a href="https://wa.me/27000000000" target="_blank" rel="noopener noreferrer" className="btn-secondary flex items-center gap-2">
+            <a href="https://wa.me/+27609953719" target="_blank" rel="noopener noreferrer" className="btn-secondary flex items-center gap-2">
               <MessageCircle size={14} /> WhatsApp Us
             </a>
             <Link to="/contact" className="btn-secondary flex items-center gap-2">

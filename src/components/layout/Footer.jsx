@@ -121,13 +121,13 @@ export default function Footer() {
 
         {/* Contact quick links */}
         <div className="py-8 border-t border-b flex flex-wrap gap-6" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
-          <a href="tel:[TELEPHONE]" className="flex items-center gap-2 text-sm transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.6)', fontFamily: 'Inter, sans-serif' }}>
+          <a href="tel:+27609953719" className="flex items-center gap-2 text-sm transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.6)', fontFamily: 'Inter, sans-serif' }}>
             <Phone size={14} />
-            [Telephone — To be confirmed]
+            Telephone — +27 60 995 3719
           </a>
-          <a href="mailto:[EMAIL]" className="flex items-center gap-2 text-sm transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.6)', fontFamily: 'Inter, sans-serif' }}>
+          <a href="mailto:Mxolisi.Shabangu@gauteng.gov.za" className="flex items-center gap-2 text-sm transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.6)', fontFamily: 'Inter, sans-serif' }}>
             <Mail size={14} />
-            [Email — To be confirmed]
+            Email — Mxolisi.Shabangu@gauteng.gov.za
           </a>
           <a href="https://wa.me/+27609953719" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.6)', fontFamily: 'Inter, sans-serif' }}>
             <MessageCircle size={14} />

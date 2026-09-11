@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { Phone, Mail, MessageCircle, MapPin, CheckCircle } from 'lucide-react';
 
 const contactOptions = [
-  { icon: Phone, title: 'Call Us', detail: '[Telephone — To be confirmed by Reubray]', sub: 'Monday–Friday, 8am–5pm', href: 'tel:[TELEPHONE]' },
-  { icon: MessageCircle, title: 'WhatsApp Us', detail: '[WhatsApp Business — To be confirmed]', sub: 'Send us a message anytime', href: 'https://wa.me/27000000000' },
-  { icon: Mail, title: 'Email Us', detail: '[Email — To be confirmed by Reubray]', sub: 'We typically respond within 1 business day', href: 'mailto:[EMAIL]' },
-  { icon: MapPin, title: 'Visit Us', detail: '[Physical address — To be confirmed by Reubray]', sub: 'By appointment', href: '#' },
+  { icon: Phone, title: 'Call Us', detail: 'Telephone — (+27) 609-953-719', sub: 'Monday–Friday, 8am–5pm', href: 'tel:+27609953719' },
+  { icon: MessageCircle, title: 'WhatsApp Us', detail: 'WhatsApp Business — (+27) 609-953-719', sub: 'Send us a message anytime', href: 'https://wa.me/+27609953719' },
+  { icon: Mail, title: 'Email Us', detail: 'Email — Mxolisi.Shabangu@gauteng.gov.za', sub: 'We typically respond within 1 business day', href: 'mailto:Mxolisi.Shabangu@gauteng.gov.za' },
+  // { icon: MapPin, title: 'Visit Us', detail: '[Physical address — To be confirmed by Reubray]', sub: 'By appointment', href: '#' },
 ];
 
 export default function Contact() {
@@ -33,7 +33,7 @@ export default function Contact() {
       {/* CONTACT OPTIONS */}
       <section className="py-20 px-6" style={{ background: 'white' }}>
         <div className="max-w-5xl mx-auto">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-20">
+          <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-5 mb-20">
             {contactOptions.map((opt) => (
               <a key={opt.title} href={opt.href} className="card-soft p-8 block text-center group">
                 <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:scale-110" style={{ background: 'rgba(15,31,77,0.07)' }}>

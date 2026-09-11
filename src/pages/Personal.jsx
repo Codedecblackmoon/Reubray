@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Shield, Heart, Car, ArrowRight, CheckCircle, MessageCircle } from 'lucide-react';
+import ima from '../assets/personal.png';
 
 const solutions = [
   {
@@ -47,7 +48,8 @@ export default function Personal() {
       <section className="relative min-h-96 flex items-end overflow-hidden" style={{ paddingTop: '7rem', minHeight: '70vh' }}>
         <div className="absolute inset-0 z-0">
           <img
-            src="https://media.base44.com/images/public/6a9313c19e128f8d88dc6e99/19a838de1_generated_9519b659.png"
+            // src="https://media.base44.com/images/public/6a9313c19e128f8d88dc6e99/19a838de1_generated_9519b659.png"
+            src={ima}
             alt="Personal insurance solutions"
             className="w-full h-full object-cover"
           />
@@ -147,7 +149,7 @@ export default function Personal() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link to="/request-advice" className="btn-primary">Speak to an Adviser</Link>
-            <a href="https://wa.me/27000000000" target="_blank" rel="noopener noreferrer" className="btn-secondary flex items-center gap-2">
+            <a href="https://wa.me/+27609953719" target="_blank" rel="noopener noreferrer" className="btn-secondary flex items-center gap-2">
               <MessageCircle size={14} />
               WhatsApp Us
             </a>

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Building2, Users, TrendingUp, Shield, Briefcase, ArrowRight } from 'lucide-react';
+import ima from '../assets/cop.png';
 
 const solutions = [
   { icon: Shield, title: 'Bespoke Insurance Solutions', desc: 'Complex, multi-faceted insurance programmes structured around your organisation\'s specific risk profile and operational requirements.' },
@@ -24,7 +25,8 @@ export default function Corporate() {
       <section className="relative flex items-end overflow-hidden" style={{ paddingTop: '7rem', minHeight: '70vh' }}>
         <div className="absolute inset-0 z-0">
           <img
-            src="https://media.base44.com/images/public/6a9313c19e128f8d88dc6e99/4085c6bec_generated_23e9228e.png"
+            // src="https://media.base44.com/images/public/6a9313c19e128f8d88dc6e99/4085c6bec_generated_23e9228e.png"
+            src={ima}
             alt="Corporate financial solutions"
             className="w-full h-full object-cover"
           />

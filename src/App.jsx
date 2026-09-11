@@ -17,6 +17,7 @@ import Corporate from '@/pages/Corporate';
 import Solutions from '@/pages/Solutions';
 import GetAQuote from '@/pages/GetAQuote';
 import RequestAdvice from '@/pages/RequestAdvice';
+import Article from '@/pages/Article';
 import About from '@/pages/About';
 import Resources from '@/pages/Resources';
 import FAQ from '@/pages/FAQ';
@@ -44,6 +45,7 @@ function App() {
               <Route path="/request-advice" element={<RequestAdvice />} />
               <Route path="/about" element={<About />} />
               <Route path="/resources" element={<Resources />} />
+              <Route path="/resources/:slug" element={<Article />} />
               <Route path="/faq" element={<FAQ />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/claims" element={<Claims />} />

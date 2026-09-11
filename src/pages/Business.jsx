@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Briefcase, Users, Key, TrendingUp, ArrowRight, CheckCircle, MessageCircle } from 'lucide-react';
+import ima from '../assets/buisness.png';
 
 const solutions = [
   {
@@ -39,7 +40,8 @@ export default function Business() {
       <section className="relative flex items-end overflow-hidden" style={{ paddingTop: '7rem', minHeight: '70vh' }}>
         <div className="absolute inset-0 z-0">
           <img
-            src="https://media.base44.com/images/public/6a9313c19e128f8d88dc6e99/e8308bfff_generated_6dceb7b1.png"
+            // src="https://media.base44.com/images/public/6a9313c19e128f8d88dc6e99/e8308bfff_generated_6dceb7b1.png"
+            src={ima}
             alt="Business insurance solutions"
             className="w-full h-full object-cover"
           />
@@ -120,7 +122,7 @@ export default function Business() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link to="/request-advice" className="btn-primary">Speak to a Business Adviser</Link>
-            <a href="https://wa.me/27000000000" target="_blank" rel="noopener noreferrer" className="btn-secondary flex items-center gap-2">
+            <a href="https://wa.me/+27609953719" target="_blank" rel="noopener noreferrer" className="btn-secondary flex items-center gap-2">
               <MessageCircle size={14} /> WhatsApp Us
             </a>
           </div>
