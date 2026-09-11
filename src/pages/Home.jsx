@@ -59,7 +59,7 @@ export default function Home() {
 
             <h1
               className="serif-display font-light mb-6 fade-up-delay-1"
-              style={{ fontSize: 'clamp(2.8rem, 6vw, 5rem)', color: 'white', lineHeight: 1.08 }}
+              style={{ fontSize: 'clamp(1.4rem, 3vw, 2.5rem)', color: 'white', lineHeight: 1.08 }}
             >
               Financial and insurance<br />
               <em style={{ color: 'var(--rb-gold-light)', fontStyle: 'italic' }}>solutions built around you.</em>
@@ -78,7 +78,7 @@ export default function Home() {
                 Request Advice
               </Link>
               <a
-                href="https://wa.me/27000000000"
+                href="https://wa.me/+27609953719"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-secondary flex items-center gap-2"
@@ -317,7 +317,7 @@ export default function Home() {
             <Link to="/get-a-quote" className="btn-gold">Get a Quote</Link>
             <Link to="/request-advice" className="btn-secondary">Request Advice</Link>
             <a
-              href="https://wa.me/27000000000"
+              href="https://wa.me/+27609953719"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary flex items-center gap-2"

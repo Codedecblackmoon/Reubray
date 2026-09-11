@@ -29,7 +29,7 @@ const footerSections = [
       { label: 'FAQs', path: '/faq' },
       { label: 'Request Advice', path: '/request-advice' },
       { label: 'Request a Callback', path: '/contact' },
-      { label: 'WhatsApp Us', path: 'https://wa.me/27000000000', external: true },
+      { label: 'WhatsApp Us', path: 'https://wa.me/+27609953719', external: true },
     ],
   },
   {
@@ -129,7 +129,7 @@ export default function Footer() {
             <Mail size={14} />
             [Email — To be confirmed]
           </a>
-          <a href="https://wa.me/27000000000" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.6)', fontFamily: 'Inter, sans-serif' }}>
+          <a href="https://wa.me/+27609953719" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.6)', fontFamily: 'Inter, sans-serif' }}>
             <MessageCircle size={14} />
             WhatsApp Us
           </a>
