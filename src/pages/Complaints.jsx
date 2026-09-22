@@ -54,14 +54,14 @@ export default function Complaints() {
           <p className="text-base mb-10" style={{ color: 'var(--rb-muted)', fontFamily: 'Inter, sans-serif', fontWeight: 300 }}>
             All complaints contact information will be confirmed and approved by Reubray's compliance process before publication.
           </p>
-          <div className="grid sm:grid-cols-3 gap-5">
+          <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-5">
             {[
-              { icon: AlertCircle, label: 'Complaints Officer', detail: '[Name — To be confirmed]' },
-              { icon: Mail, label: 'Complaints Email', detail: '[Email — To be confirmed]' },
-              { icon: Phone, label: 'Telephone', detail: '[Telephone — To be confirmed]' },
+              { icon: AlertCircle, label: 'Complaints Officer', detail: 'Sharen Gerald' },
+              { icon: Mail, label: 'Complaints Email', detail: 'SGaerald@moonstonecomp\nliance.co.za' },
+              { icon: Phone, label: 'Telephone', detail: '(27+) 836-622-161' },
             ].map((item) => (
-              <div key={item.label} className="card-soft p-7 text-center">
-                <div className="w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: 'rgba(15,31,77,0.07)' }}>
+              <div key={item.label} className="card-soft p-8 block text-center group">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:scale-110" style={{ background: 'rgba(15,31,77,0.07)' }}>
                   <item.icon size={18} style={{ color: 'var(--rb-navy)' }} />
                 </div>
                 <p className="text-xs uppercase tracking-widest mb-1 font-medium" style={{ color: 'var(--rb-muted)', fontFamily: 'Inter, sans-serif', letterSpacing: '0.1em' }}>{item.label}</p>

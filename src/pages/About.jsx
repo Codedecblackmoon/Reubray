@@ -80,32 +80,8 @@ export default function About() {
         </div>
       </section>
 
-      {/* GOVERNANCE */}
-      {/* <section className="py-24 px-6" style={{ background: 'white' }}>
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-14">
-            <div className="gold-rule mx-auto" />
-            <h2 className="serif-display text-4xl font-light">Governance</h2>
-          </div>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
-            {['Board of Directors', 'Managing Director', 'Compliance Officer', 'Risk Committee', 'Internal Audit'].map((role) => (
-              <div key={role} className="p-6 text-center rounded-lg" style={{ background: 'var(--rb-parchment)', border: '1px solid var(--rb-stone)' }}>
-                <div className="w-12 h-12 rounded-full mx-auto mb-3 flex items-center justify-center" style={{ background: 'var(--rb-navy)' }}>
-                  <Users size={16} color="white" />
-                </div>
-                <p className="text-sm font-medium" style={{ color: 'var(--rb-navy)', fontFamily: 'Inter, sans-serif' }}>{role}</p>
-                <p className="text-xs mt-1" style={{ color: 'var(--rb-muted)', fontFamily: 'Inter, sans-serif' }}>[Details to be confirmed]</p>
-              </div>
-            ))}
-          </div>
-          <p className="text-sm text-center mt-8" style={{ color: 'var(--rb-muted)', fontFamily: 'Inter, sans-serif' }}>
-            Leadership and governance information will be published once confirmed and approved by Reubray.
-          </p>
-        </div>
-      </section> */}
-
       {/* LEADERSHIP placeholder */}
-      {/* <section className="py-24 px-6" style={{ background: 'var(--rb-parchment)' }}>
+      <section className="py-24 px-6" style={{ background: 'var(--rb-parchment)' }}>
         <div className="max-w-4xl mx-auto text-center">
           <div className="gold-rule mx-auto" />
           <h2 className="serif-display text-4xl font-light mb-6">Leadership</h2>
@@ -113,18 +89,22 @@ export default function About() {
             Leadership profiles, photographs and biographies will be published once supplied and approved by Reubray.
           </p>
           <div className="grid sm:grid-cols-3 gap-5">
-            {[1, 2, 3].map((i) => (
+            {[
+              {name: 'Mxolisi Shabangu', position: 'Chief Executive Officer'},
+              {name: 'Rueben Maake', position: 'Chief Executive Officer'},
+              {name: 'Sharen Gerald', position: 'Complaints Officer'},
+            ].map((i) => (
               <div key={i} className="card-soft p-8 text-center">
                 <div className="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ background: 'var(--rb-stone)' }}>
                   <Users size={28} style={{ color: 'var(--rb-muted)' }} />
                 </div>
-                <p className="text-sm font-semibold" style={{ color: 'var(--rb-navy)', fontFamily: 'Inter, sans-serif' }}>[Name — To be confirmed]</p>
-                <p className="text-xs mt-1" style={{ color: 'var(--rb-muted)', fontFamily: 'Inter, sans-serif' }}>[Position — To be confirmed]</p>
+                <p className="text-sm font-semibold" style={{ color: 'var(--rb-navy)', fontFamily: 'Inter, sans-serif' }}>{i.name}</p>
+                <p className="text-xs mt-1" style={{ color: 'var(--rb-muted)', fontFamily: 'Inter, sans-serif' }}>{i.position}</p>
               </div>
             ))}
           </div>
         </div>
-      </section> */}
+      </section>
 
       {/* CTA */}
       <section className="py-20 px-6 text-center" style={{ background: 'var(--rb-navy)' }}>

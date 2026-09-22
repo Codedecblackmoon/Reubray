@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { Phone, Mail, MessageCircle, MapPin, CheckCircle } from 'lucide-react';
 
 const contactOptions = [
-  { icon: Phone, title: 'Call Us', detail: 'Telephone — (+27) 609-953-719', sub: 'Monday–Friday, 8am–5pm', href: 'tel:+27609953719' },
-  { icon: MessageCircle, title: 'WhatsApp Us', detail: 'WhatsApp Business — (+27) 609-953-719', sub: 'Send us a message anytime', href: 'https://wa.me/+27609953719' },
-  { icon: Mail, title: 'Email Us', detail: 'Email — Mxolisi.Shabangu@gauteng.gov.za', sub: 'We typically respond within 1 business day', href: 'mailto:Mxolisi.Shabangu@gauteng.gov.za' },
-  // { icon: MapPin, title: 'Visit Us', detail: '[Physical address — To be confirmed by Reubray]', sub: 'By appointment', href: '#' },
+  { icon: Phone, title: 'Call Us', detail: '(+27) 076 630 9032', sub: 'Monday–Friday, 8am–5pm', href: 'tel:+27609953719' },
+  { icon: MessageCircle, title: 'WhatsApp Us', detail: '(+27) 728-767-699', sub: 'Send us a message anytime', href: 'https://wa.me/+27728767699' },
+  { icon: Mail, title: 'Email Us', detail: 'Reubrayptylty@gmail.com', sub: 'We typically respond within 1 business day', href: 'mailto:Reubrayptylty@gmail.com' },
+  // { icon: MapPin, title: 'Visit Us', detail: '[Physical address — To be confirmed by Reubray]', sub: 'By appointment', href: '#' }   076 630 9032,
 ];
 
 export default function Contact() {

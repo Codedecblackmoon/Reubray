@@ -149,7 +149,7 @@ export default function Personal() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link to="/request-advice" className="btn-primary">Speak to an Adviser</Link>
-            <a href="https://wa.me/+27609953719" target="_blank" rel="noopener noreferrer" className="btn-secondary flex items-center gap-2">
+            <a href="https://wa.me/+27728767699" target="_blank" rel="noopener noreferrer" className="btn-secondary flex items-center gap-2">
               <MessageCircle size={14} />
               WhatsApp Us
             </a>

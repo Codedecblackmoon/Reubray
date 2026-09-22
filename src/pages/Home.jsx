@@ -78,7 +78,7 @@ export default function Home() {
                 Request Advice
               </Link>
               <a
-                href="https://wa.me/+27609953719"
+                href="https://wa.me/+27728767699"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-secondary flex items-center gap-2"
@@ -317,7 +317,7 @@ export default function Home() {
             <Link to="/get-a-quote" className="btn-gold">Get a Quote</Link>
             <Link to="/request-advice" className="btn-secondary">Request Advice</Link>
             <a
-              href="https://wa.me/+27609953719"
+              href="https://wa.me/+27728767699"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary flex items-center gap-2"
