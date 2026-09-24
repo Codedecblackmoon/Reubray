@@ -4,12 +4,34 @@ import { CheckCircle } from 'lucide-react';
 
 export default function RequestAdvice() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
   const [form, setForm] = useState({
     name: '', email: '', phone: '', customerType: '', area: '', message: '', contactMethod: '', contactTime: '', popia: false,
   });
 
   const update = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
-  const handleSubmit = (e) => { e.preventDefault(); setSubmitted(true); };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setError('');
+    try {
+      const res = await fetch('/api/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ source: 'advice', ...form }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to submit request');
+      }
+      setSubmitted(true);
+    } catch (err) {
+      setError('Something went wrong submitting your request. Please try again or contact us directly.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   const inputStyle = { border: '1px solid var(--rb-stone)', background: 'white', color: 'var(--rb-charcoal)', fontFamily: 'Inter, sans-serif', fontSize: '0.9375rem' };
   const labelStyle = { fontFamily: 'Inter, sans-serif', fontSize: '0.8125rem', fontWeight: 500, color: 'var(--rb-navy)', marginBottom: '0.375rem', display: 'block' };
@@ -98,8 +120,9 @@ export default function RequestAdvice() {
               </span>
             </label>
           </div>
-          <button type="submit" className="btn-gold w-full" disabled={!form.name || !form.email || !form.phone || !form.popia} style={{ opacity: (!form.name || !form.email || !form.phone || !form.popia) ? 0.4 : 1 }}>
-            Request Advice
+          {error && <p className="text-sm" style={{ color: 'var(--rb-gold)', fontFamily: 'Inter, sans-serif' }}>{error}</p>}
+          <button type="submit" className="btn-primary w-full" disabled={!form.name || !form.email || !form.phone || !form.popia || submitting} style={{ opacity: (!form.name || !form.email || !form.phone || !form.popia || submitting) ? 0.4 : 1 }}>
+            {submitting ? 'Sending…' : 'Request Advice'}
           </button>
         </form>
       </div>

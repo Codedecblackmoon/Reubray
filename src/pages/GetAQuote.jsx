@@ -16,6 +16,8 @@ const provinces = ['Gauteng', 'Western Cape', 'KwaZulu-Natal', 'Eastern Cape', '
 export default function GetAQuote() {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
   const [form, setForm] = useState({
     insuranceTypes: [],
     name: '', surname: '', email: '', phone: '', dob: '', gender: '', province: '', employment: '',
@@ -34,9 +36,26 @@ export default function GetAQuote() {
 
   const update = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    setError('');
+    try {
+      const res = await fetch('/api/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ source: 'quote', ...form }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
+      setSubmitted(true);
+    } catch (err) {
+      setError('Something went wrong sending your message. Please try again or contact us directly.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const inputClass = "w-full px-4 py-3 rounded border text-base outline-none transition-all focus:border-navy focus:ring-1 focus:ring-navy";
@@ -274,14 +293,10 @@ export default function GetAQuote() {
               </div>
               <div className="flex gap-4 mt-8">
                 <button type="button" className="btn-secondary flex-1" onClick={() => setStep(3)}>Back</button>
-                <button
-                  type="submit"
-                  className="btn-gold flex-1"
-                  disabled={!form.popia}
-                  style={{ opacity: !form.popia ? 0.4 : 1 }}
-                >
-                  Request My Quote
-                </button>
+                {error && <p className="text-sm" style={{ color: 'var(--rb-gold)', fontFamily: 'Inter, sans-serif' }}>{error}</p>}
+                  <button type="submit" className="btn-primary w-full" disabled={!form.popia || submitting} style={{ opacity: (!form.popia || submitting) ? 0.4 : 1 }}>
+                    {submitting ? 'Sending…' : 'Request My Quote'}
+                  </button>
               </div>
             </div>
           )}
