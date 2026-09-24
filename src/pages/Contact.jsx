@@ -4,9 +4,42 @@
 // const contactOptions = [
 //   { icon: Phone, title: 'Call Us', detail: '(+27) 076 630 9032', sub: 'Monday–Friday, 8am–5pm', href: 'tel:+27609953719' },
 //   { icon: MessageCircle, title: 'WhatsApp Us', detail: '(+27) 728-767-699', sub: 'Send us a message anytime', href: 'https://wa.me/+27728767699' },
-//   { icon: Mail, title: 'Email Us', detail: 'Reubrayptylty@gmail.com', sub: 'We typically respond within 1 business day', href: 'mailto:Reubrayptylty@gmail.com' },
+//   { icon: Mail, title: 'Email Us', detail: 'Reubrayptylty@gmail.com', sub: 'We typically respond within 1 business day', href: 'Reubrayptylty@gmail.com' },
 //   // { icon: MapPin, title: 'Visit Us', detail: '[Physical address — To be confirmed by Reubray]', sub: 'By appointment', href: '#' }   076 630 9032,
 // ];
+
+// // ----------------
+// const NAME_REGEX = /^[A-Za-z\s'-]+$/;
+// const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// const PHONE_REGEX = /^\d{10}$/;
+// const MESSAGE_MAX_LENGTH = 2000;
+ 
+// function validateField(name, value, { required = false } = {}) {
+//   const v = (value || '').trim();
+//   switch (name) {
+//     case 'name':
+//       if (!v) return required ? 'Name is required.' : '';
+//       if (v.length > 100) return 'Name must be under 100 characters.';
+//       if (!NAME_REGEX.test(v)) return 'Name should only contain letters (no numbers or symbols).';
+//       return '';
+//     case 'email':
+//       if (!v) return 'Email is required.';
+//       if (v.length > 254) return 'Email address is too long.';
+//       if (!EMAIL_REGEX.test(v)) return 'Enter a valid email address (e.g. name@example.com).';
+//       return '';
+//     case 'phone':
+//       if (!v) return required ? 'Phone number is required.' : '';
+//       if (!PHONE_REGEX.test(v)) return 'Enter a 10-digit phone number (numbers only).';
+//       return '';
+//     case 'message':
+//       if (!v) return required ? 'Message is required.' : '';
+//       if (v.length > MESSAGE_MAX_LENGTH) return `Message must be under ${MESSAGE_MAX_LENGTH} characters.`;
+//       return '';
+//     default:
+//       return '';
+//   }
+// }
+// // --------------------------
 
 // export default function Contact() {
 //   const [submitted, setSubmitted] = useState(false);
@@ -19,10 +52,15 @@
 //     setSubmitting(true);
 //     setError('');
 //     try {
-//       await fetch('/api/send', {
-//         method: 'POST', 
+//       const res = await fetch('/api/send', {
+//         method: 'POST',
 //         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({ source: 'contact', ...form }) });
+//         body: JSON.stringify({ source: 'contact', ...form }),
+//       });
+//       const data = await res.json().catch(() => ({}));
+//       if (!res.ok) {
+//         throw new Error(data.error || 'Failed to send message');
+//       }
 //       setSubmitted(true);
 //     } catch (err) {
 //       setError('Something went wrong sending your message. Please try again or contact us directly.');
@@ -123,20 +161,81 @@ import { Phone, Mail, MessageCircle, MapPin, CheckCircle } from 'lucide-react';
 const contactOptions = [
   { icon: Phone, title: 'Call Us', detail: '(+27) 076 630 9032', sub: 'Monday–Friday, 8am–5pm', href: 'tel:+27609953719' },
   { icon: MessageCircle, title: 'WhatsApp Us', detail: '(+27) 728-767-699', sub: 'Send us a message anytime', href: 'https://wa.me/+27728767699' },
-  { icon: Mail, title: 'Email Us', detail: 'Reubrayptylty@gmail.com', sub: 'We typically respond within 1 business day', href: 'Reubrayptylty@gmail.com' },
+  { icon: Mail, title: 'Email Us', detail: 'Reubrayptylty@gmail.com', sub: 'We typically respond within 1 business day', href: 'mailto:Reubrayptylty@gmail.com' },
   // { icon: MapPin, title: 'Visit Us', detail: '[Physical address — To be confirmed by Reubray]', sub: 'By appointment', href: '#' }   076 630 9032,
 ];
+
+// --- Validation helpers -----------------------------------------------
+const NAME_REGEX = /^[A-Za-z\s'-]+$/;
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PHONE_REGEX = /^\d{10}$/;
+const MESSAGE_MAX_LENGTH = 2000;
+
+function validateField(name, value, { required = false } = {}) {
+  const v = (value || '').trim();
+  switch (name) {
+    case 'name':
+      if (!v) return required ? 'Name is required.' : '';
+      if (v.length > 100) return 'Name must be under 100 characters.';
+      if (!NAME_REGEX.test(v)) return 'Name should only contain letters (no numbers or symbols).';
+      return '';
+    case 'email':
+      if (!v) return 'Email is required.';
+      if (v.length > 254) return 'Email address is too long.';
+      if (!EMAIL_REGEX.test(v)) return 'Enter a valid email address (e.g. name@example.com).';
+      return '';
+    case 'phone':
+      if (!v) return required ? 'Phone number is required.' : '';
+      if (!PHONE_REGEX.test(v)) return 'Enter a 10-digit phone number (numbers only).';
+      return '';
+    case 'message':
+      if (!v) return required ? 'Message is required.' : '';
+      if (v.length > MESSAGE_MAX_LENGTH) return `Message must be under ${MESSAGE_MAX_LENGTH} characters.`;
+      return '';
+    default:
+      return '';
+  }
+}
+// ------------------------------------------------------------------------
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [form, setForm] = useState({ name: '', email: '', phone: '', reason: '', message: '' });
+  const [fieldErrors, setFieldErrors] = useState({});
+
   const update = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+
+  const updatePhone = (e) => {
+    const digits = e.target.value.replace(/\D/g, '').slice(0, 10);
+    setForm((f) => ({ ...f, phone: digits }));
+    setFieldErrors((fe) => ({ ...fe, phone: validateField('phone', digits) }));
+  };
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    const required = name === 'name' || name === 'email' || name === 'message';
+    setFieldErrors((fe) => ({ ...fe, [name]: validateField(name, value, { required }) }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitting(true);
     setError('');
+
+    const errors = {
+      name: validateField('name', form.name, { required: true }),
+      email: validateField('email', form.email, { required: true }),
+      phone: validateField('phone', form.phone),
+      message: validateField('message', form.message, { required: true }),
+    };
+    setFieldErrors(errors);
+    if (Object.values(errors).some(Boolean)) {
+      setError('Please fix the highlighted fields below.');
+      return;
+    }
+
+    setSubmitting(true);
     try {
       const res = await fetch('/api/send', {
         method: 'POST',
@@ -149,15 +248,20 @@ export default function Contact() {
       }
       setSubmitted(true);
     } catch (err) {
-      setError('Something went wrong sending your message. Please try again or contact us directly.');
+      setError(err.message || 'Something went wrong sending your message. Please try again or contact us directly.');
     } finally {
       setSubmitting(false);
     }
   };
 
   const inputStyle = { border: '1px solid var(--rb-stone)', background: 'white', color: 'var(--rb-charcoal)', fontFamily: 'Inter, sans-serif', fontSize: '0.9375rem' };
+  const errorInputStyle = { ...inputStyle, border: '1px solid var(--rb-gold)' };
   const labelStyle = { fontFamily: 'Inter, sans-serif', fontSize: '0.8125rem', fontWeight: 500, color: 'var(--rb-navy)', marginBottom: '0.375rem', display: 'block' };
+  const fieldErrorStyle = { fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', color: 'var(--rb-gold)', marginTop: '0.25rem' };
   const inputClass = "w-full px-4 py-3 rounded border outline-none transition-all";
+
+  const hasBlockingErrors = !form.name || !form.email || !form.message
+    || Object.values(fieldErrors).some(Boolean);
 
   return (
     <div style={{ paddingTop: '6rem' }}>
@@ -199,10 +303,38 @@ export default function Contact() {
                   <p className="text-sm" style={{ color: 'var(--rb-muted)', fontFamily: 'Inter, sans-serif' }}>We'll be in touch shortly.</p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div><label style={labelStyle}>Name *</label><input required name="name" value={form.name} onChange={update} className={inputClass} style={inputStyle} /></div>
-                  <div><label style={labelStyle}>Email *</label><input required type="email" name="email" value={form.email} onChange={update} className={inputClass} style={inputStyle} /></div>
-                  <div><label style={labelStyle}>Phone</label><input name="phone" value={form.phone} onChange={update} className={inputClass} style={inputStyle} /></div>
+                <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+                  <div>
+                    <label style={labelStyle}>Name *</label>
+                    <input
+                      name="name" value={form.name} onChange={update} onBlur={handleBlur}
+                      maxLength={100} className={inputClass}
+                      style={fieldErrors.name ? errorInputStyle : inputStyle}
+                      aria-invalid={!!fieldErrors.name}
+                    />
+                    {fieldErrors.name && <p style={fieldErrorStyle}>{fieldErrors.name}</p>}
+                  </div>
+                  <div>
+                    <label style={labelStyle}>Email *</label>
+                    <input
+                      type="email" name="email" value={form.email} onChange={update} onBlur={handleBlur}
+                      className={inputClass}
+                      style={fieldErrors.email ? errorInputStyle : inputStyle}
+                      aria-invalid={!!fieldErrors.email}
+                    />
+                    {fieldErrors.email && <p style={fieldErrorStyle}>{fieldErrors.email}</p>}
+                  </div>
+                  <div>
+                    <label style={labelStyle}>Phone</label>
+                    <input
+                      name="phone" value={form.phone} onChange={updatePhone} onBlur={handleBlur}
+                      inputMode="numeric" maxLength={10} placeholder="e.g. 0821234567"
+                      className={inputClass}
+                      style={fieldErrors.phone ? errorInputStyle : inputStyle}
+                      aria-invalid={!!fieldErrors.phone}
+                    />
+                    {fieldErrors.phone && <p style={fieldErrorStyle}>{fieldErrors.phone}</p>}
+                  </div>
                   <div>
                     <label style={labelStyle}>Reason for contacting</label>
                     <select name="reason" value={form.reason} onChange={update} className={inputClass} style={inputStyle}>
@@ -211,9 +343,18 @@ export default function Contact() {
                       <option>Claim enquiry</option><option>Complaint</option><option>Other</option>
                     </select>
                   </div>
-                  <div><label style={labelStyle}>Message *</label><textarea required name="message" value={form.message} onChange={update} rows={5} className={inputClass} style={inputStyle} /></div>
+                  <div>
+                    <label style={labelStyle}>Message *</label>
+                    <textarea
+                      name="message" value={form.message} onChange={update} onBlur={handleBlur}
+                      rows={5} maxLength={MESSAGE_MAX_LENGTH} className={inputClass}
+                      style={fieldErrors.message ? errorInputStyle : inputStyle}
+                      aria-invalid={!!fieldErrors.message}
+                    />
+                    {fieldErrors.message && <p style={fieldErrorStyle}>{fieldErrors.message}</p>}
+                  </div>
                   {error && <p className="text-sm" style={{ color: 'var(--rb-gold)', fontFamily: 'Inter, sans-serif' }}>{error}</p>}
-                  <button type="submit" className="btn-primary w-full" disabled={!form.name || !form.email || !form.message || submitting} style={{ opacity: (!form.name || !form.email || !form.message || submitting) ? 0.4 : 1 }}>
+                  <button type="submit" className="btn-primary w-full" disabled={hasBlockingErrors || submitting} style={{ opacity: (hasBlockingErrors || submitting) ? 0.4 : 1 }}>
                     {submitting ? 'Sending…' : 'Send Message'}
                   </button>
                 </form>
